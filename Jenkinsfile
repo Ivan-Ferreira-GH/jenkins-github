@@ -7,7 +7,8 @@ pipeline {
             }
             post {
                 always {
-                    jiraSendBuildInfo()
+                    echo "Sending info to jira..."
+                    // jiraSendBuildInfo()
                 }
            }
         }
@@ -24,7 +25,7 @@ pipeline {
         stage('Request approval') { // Raise change request
             steps {
                 echo 'Raise change request...'
-                jiraSendDeploymentInfo(site:'fintechinnovacion.atlassian.net',
+                /* jiraSendDeploymentInfo(site:'fintechinnovacion.atlassian.net',
                         environmentId:'prod-1',
                         environmentName:'prod-1',
                         environmentType:'production',
@@ -33,7 +34,7 @@ pipeline {
                         serviceIds: [
                           'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzVlMDVkZGY4LTgyYTUtNGU0Mi05MjA3LTNjZWE3ZmJkZjg3MC9jNDJhMzY5Yy1iYzM3LTExZWUtODU1Mi0wYWJlM2Y0YTY2MDE='
                         ]
-                    )
+                    ) */
             }
         }
         stage('Approval gate') { // Check change request status
@@ -41,10 +42,10 @@ pipeline {
                 retry(20) { // Poll every 30s for 10min
                     waitUntil { 
                         sleep 30
-                        checkGatingStatus(
+                        /* checkGatingStatus(
                           site:'fintechinnovacion.atlassian.net', 
                           environmentId:'prod-1'
-                        )
+                        ) */
                     }
                 }   
             }
@@ -55,7 +56,7 @@ pipeline {
             }
             post {
               always {
-                  jiraSendDeploymentInfo (
+                  /* jiraSendDeploymentInfo (
                       site: 'fintechinnovacion.atlassian.net',
                       environmentId: 'prod-1',
                       environmentName: 'prod-1',
@@ -64,7 +65,7 @@ pipeline {
                       serviceIds: [
                         'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzVlMDVkZGY4LTgyYTUtNGU0Mi05MjA3LTNjZWE3ZmJkZjg3MC9jNDJhMzY5Yy1iYzM3LTExZWUtODU1Mi0wYWJlM2Y0YTY2MDE='
                       ]
-                    )
+                    ) */
               }
             }
         }
