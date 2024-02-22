@@ -56,6 +56,7 @@ pipeline {
             }
             post {
               always {
+                  echo "Sending info to jira..."
                   /* jiraSendDeploymentInfo (
                       site: 'fintechinnovacion.atlassian.net',
                       environmentId: 'prod-1',
