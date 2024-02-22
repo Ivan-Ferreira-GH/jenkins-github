@@ -37,19 +37,19 @@ pipeline {
                     ) */
             }
         }
-        stage('Approval gate') { // Check change request status
+        /* stage('Approval gate') { // Check change request status
             steps {
                 retry(20) { // Poll every 30s for 10min
                     waitUntil { 
                         sleep 30
-                        /* checkGatingStatus(
+                         checkGatingStatus(
                           site:'fintechinnovacion.atlassian.net', 
                           environmentId:'prod-1'
-                        ) */
+                        ) 
                     }
                 }   
             }
-        }
+        } */
         stage('Deploy - Production') {
             steps {
                 echo "Deploying to production!!"
